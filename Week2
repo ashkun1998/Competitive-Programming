@@ -1,61 +1,102 @@
-Sort an array of 0s, 1s and 2s
+Number of Islands
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
 
-Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+
+Example 2:
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
+ 
+Constraints:
+
+m == grid.length
+n == grid[i].length
+1 <= m, n <= 300
+grid[i][j] is '0' or '1'.
+
+class Solution {
+    public int numIslands(char[][] grid) {
+        int count =0;
+        for(int i=0;i<grid.length;i++) {
+            for(int j=0;j<grid[i].length;j++) {
+                if(grid[i][j]=='1') {
+                    count++;
+                    callBFS(grid,i,j);
+                }
+            }
+        }
+        return count;
+    }
+    
+    void callBFS(char[][] grid,int i,int j) {
+        if(i<0 || i>=grid.length || j<0 || j>=grid[i].length || grid[i][j] == '0') 
+            return ;
+        grid[i][j]='0';
+        callBFS(grid,i+1,j);
+        callBFS(grid,i-1,j);
+        callBFS(grid,i,j+1);
+        callBFS(grid,i,j-1);
+    }
+}
+
+Lowest Common Ancestor of a Binary Search Tree
+
+Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
+
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+ 
 
 Example 1:
 
-Input: 
-N = 5
-arr[]= {0 2 1 2 0}
-Output:
-0 0 1 2 2
-Explanation:
-0s 1s and 2s are segregated 
-into ascending order.
+
+Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+Output: 6
+Explanation: The LCA of nodes 2 and 8 is 6.
 Example 2:
 
-Input: 
-N = 3
-arr[] = {0 1 0}
-Output:
-0 0 1
-Explanation:
-0s 1s and 2s are segregated 
-into ascending order.
 
-Your Task:
-You don't need to read input or print anything. Your task is to complete the function sort012() that takes an array arr and N as input parameters and sorts the array in-place.
+Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+Output: 2
+Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
+Example 3:
 
-
-Expected Time Complexity: O(N)
-Expected Auxiliary Space: O(1)
-
+Input: root = [2,1], p = 2, q = 1
+Output: 2
+ 
 
 Constraints:
-1 <= N <= 10^6
-0 <= A[i] <= 2
 
+The number of nodes in the tree is in the range [2, 105].
+-109 <= Node.val <= 109
+All Node.val are unique.
+p != q
+p and q will exist in the BST.
 
-public static void sort012(int a[], int n)
+class Solution 
+{
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) 
     {
-        int low=0;
-        int mid=0;
-        int high=n-1;
-        for(int i=0;i<n;i++) {
-            if(a[mid] == 0) {
-                int temp = a[mid];
-                a[mid] = a[low];
-                a[low] = temp;
-                mid++;
-                low++;
-            } else if(a[mid] == 1) {
-                mid++;
-            } else {
-                int temp = a[mid];
-                a[mid] = a[high];
-                a[high] = temp;
-                high--;
-            }
-        }
-        // code here 
+        if(p.val<root.val && q.val<root.val)
+            return lowestCommonAncestor(root.left,p,q);
+        
+        if(p.val>root.val && q.val>root.val)
+            return lowestCommonAncestor(root.right,p,q);
+        
+        return root;
     }
+}
