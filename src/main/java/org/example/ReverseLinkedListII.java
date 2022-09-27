@@ -44,17 +44,20 @@ public class ReverseLinkedListII {
             current = current.next;
             right--;
         }
-        ListNode leftConnection = prev;
-        ListNode rightConnection = current;
+        ListNode connection = prev;
+        ListNode tail = current;
         while (right-- > 0) {
             ListNode nextNode = current.next;
             current.next = prev;
             prev = current;
             current = nextNode;
         }
-        if (leftConnection != null) leftConnection.next = prev;
-        else head = prev;
-        rightConnection.next = current;
+        if (connection != null) {
+            connection.next = prev;
+        } else {
+            head = prev;
+        }
+        tail.next = current;
         return head;
     }
 }

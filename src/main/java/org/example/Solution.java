@@ -26,11 +26,14 @@ public class Solution {
         for (int i = 0; i < n; ++i)
             arr[i] = new int[]{efficiency[i], speed[i]};
         Arrays.sort(arr, (a, b) -> b[0] - a[0]);
+        System.out.println(arr);
         PriorityQueue<Integer> pq = new PriorityQueue<>(k, Comparator.comparingInt(a -> a));
         long res = 0, sum = 0;
         for (int[] ar : arr) {
+            System.out.println(pq);
             pq.add(ar[1]);
             sum = (sum + ar[1]);
+            System.out.println(sum);
             if (pq.size() > k) sum -= pq.poll();
             res = Math.max(res, (sum * ar[0]));
         }
