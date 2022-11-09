@@ -2,16 +2,19 @@ package org.example;
 
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OnlineStockSpan {
     static Stack<int[]> stack = new Stack<>();
+    static Logger logger = Logger.getLogger(OnlineStockSpan.class.getName());
 
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Enter number of days");
+            logger.log(Level.INFO, "Enter number of days");
             int n = sc.nextInt();
             int[] days = new int[n];
-            System.out.println("Enter value of stock");
+            logger.log(Level.INFO, "Enter value of stock");
             for (int i = 0; i < n; i++) {
                 days[i] = sc.nextInt();
                 System.out.print(next(days[i]) + " ");

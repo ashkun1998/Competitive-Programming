@@ -1,18 +1,22 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ContainerWithMostWater {
 
+    static Logger logger = Logger.getLogger(ContainerWithMostWater.class.getName());
+
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Enter length of the container");
+            logger.log(Level.INFO, "Enter length of the container");
             int n = sc.nextInt();
             int[] height = new int[n];
-            System.out.println("Enter heights in the array");
+            logger.log(Level.INFO, "Enter heights in the array");
             for (int i = 0; i < n; i++)
                 height[i] = sc.nextInt();
-            System.out.println("Max Area :" + maxArea(height));
+            logger.log(Level.INFO, "Max Area :" + maxArea(height));
         }
     }
 
