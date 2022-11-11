@@ -17,7 +17,7 @@ public class OnlineStockSpan {
             logger.log(Level.INFO, "Enter value of stock");
             for (int i = 0; i < n; i++) {
                 days[i] = sc.nextInt();
-                System.out.print(next(days[i]) + " ");
+                logger.log(Level.INFO, "Result {0} ", next(days[i]));
             }
         }
     }

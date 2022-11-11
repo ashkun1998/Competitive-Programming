@@ -1,10 +1,14 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Java program to find two odd
 // occurring elements
 public class TwoNumbersWithOddOccurrences {
+
+    static Logger logger = Logger.getLogger(TwoNumbersWithOddOccurrences.class.getName());
 
     /* Prints two numbers that occur odd
     number of times. The function assumes
@@ -16,9 +20,10 @@ public class TwoNumbersWithOddOccurrences {
         int xor2 = arr[0];
 
         /* Will have only single set bit of xor2 */
-        int set_bit_no;
+        int setBitNo;
         int i;
-        int x = 0, y = 0;
+        int x = 0;
+        int y = 0;
 
 	/* Get the xor of all elements in arr[].
 		The xor will basically be xor of two
@@ -29,7 +34,7 @@ public class TwoNumbersWithOddOccurrences {
 	/* Get one set a bit in the xor2. We get
 		rightmost set a bit in the following
 		line as it is easy to get */
-        set_bit_no = xor2 & -xor2;
+        setBitNo = xor2 & -xor2;
 
 	/* Now divide elements in two sets:
 			1) The elements having the
@@ -39,7 +44,7 @@ public class TwoNumbersWithOddOccurrences {
         for (i = 0; i < size; i++) {
 		/* XOR of first set is finally going
 			to hold one odd occurring number x */
-            if ((arr[i] & set_bit_no) > 0)
+            if ((arr[i] & setBitNo) > 0)
                 x = x ^ arr[i];
 
 		/* XOR of second set is finally going
@@ -47,7 +52,7 @@ public class TwoNumbersWithOddOccurrences {
             else
                 y = y ^ arr[i];
         }
-        System.out.println("The two ODD elements are " + x + " & " + y);
+        logger.log(Level.INFO, "The two ODD elements are {0} ", x + " & " + y);
     }
 
     // main function
@@ -56,7 +61,7 @@ public class TwoNumbersWithOddOccurrences {
         int n = sc.nextInt();
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
-        int arr_size = arr.length;
-        printTwoOdd(arr, arr_size);
+        int arrSize = arr.length;
+        printTwoOdd(arr, arrSize);
     }
 }

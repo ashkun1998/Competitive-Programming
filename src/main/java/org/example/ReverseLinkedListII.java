@@ -1,6 +1,8 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class ListNode {
     int val;
@@ -14,6 +16,8 @@ class ListNode {
 
 public class ReverseLinkedListII {
 
+    static Logger logger = Logger.getLogger(ReverseLinkedListII.class.getName());
+
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             ListNode head = new ListNode(1);
@@ -25,12 +29,12 @@ public class ReverseLinkedListII {
             second.next = third;
             third.next = fourth;
             fourth.next = fifth;
-            System.out.println("Enter Left and right end of the ListNode");
+            logger.log(Level.INFO, "Enter Left and right end of the ListNode");
             int left = sc.nextInt();
             int right = sc.nextInt();
             ListNode result = reverseBetween(head, left, right);
             while (result != null) {
-                System.out.print(result.val + " ");
+                logger.log(Level.INFO, "result {0} ", result.val);
                 result = result.next;
             }
         }

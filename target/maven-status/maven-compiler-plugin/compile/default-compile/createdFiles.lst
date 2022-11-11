@@ -1,7 +1,8 @@
 org\example\ListNode.class
+org\example\MaxPerformance.class
+org\example\RemoveDuplicates.class
 org\example\ReverseLinkedListII.class
 org\example\ContainerWithMostWater.class
-org\example\Solution.class
 org\example\App.class
 org\example\OnlineStockSpan.class
 org\example\TwoNumbersWithOddOccurrences.class
